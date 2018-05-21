@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "827291101441",
+    "firebase_url": "https://alpha-1f45f.firebaseio.com",
+    "project_id": "alpha-1f45f",
+    "storage_bucket": "alpha-1f45f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827291101441:android:7adfeff751460f90",
+        "android_client_info": {
+          "package_name": "com.alpha.twostudents.alpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827291101441-86qt5v602vbhdmbeflm4h6ehs4brk2e6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alpha.twostudents.alpha",
+            "certificate_hash": "1d0fc37811286c8300629a7026385e4d1f4127f0"
+          }
+        },
+        {
+          "client_id": "827291101441-qcqmg85c55khjnvfpr29bvfl9atuhfa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTO3smMHIQQJcI3pxsmqOrrkaAmPj9wUc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827291101441-qcqmg85c55khjnvfpr29bvfl9atuhfa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
