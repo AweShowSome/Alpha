@@ -2,6 +2,7 @@ package com.alpha.twostudents.alpha;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         firebaseAuth = firebaseAuth.getInstance();
 
+        // User is already signed in
+        if (firebaseAuth.getCurrentUser() != null){
+            // Start profile activity
+            finish();
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        }
+
         progressDialog = new ProgressDialog(this);
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             registerUser();
         }
         if (v == textViewSignIn) {
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 
@@ -84,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     //User is successfully registered and signed in
                     Toast.makeText(MainActivity.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
+                        // Start profile activity
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 } else {
                     Toast.makeText(MainActivity.this,"Could not register... Try again", Toast.LENGTH_SHORT).show();
                 }
