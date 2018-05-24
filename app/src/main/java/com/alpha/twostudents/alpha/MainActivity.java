@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +21,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonRegister;
     private EditText editTextEmail;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
+    private Spinner spinnerMonth;
+    private Spinner spinnerYear;
+    private Spinner spinnerDay;
+    private EditText editTextConfirmPassword;
     private EditText editTextPassword;
     private TextView textViewSignIn;
     private ProgressDialog progressDialog;
@@ -47,7 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog = new ProgressDialog(this);
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
+        editTextLastName = (EditText) findViewById(R.id.editTextLastName);
+
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 

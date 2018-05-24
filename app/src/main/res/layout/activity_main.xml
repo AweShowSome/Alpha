@@ -8,51 +8,106 @@
     tools:context=".MainActivity">
 
 
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="595dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        tools:layout_editor_absoluteY="4dp">
 
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_gravity="center_horizontal"
             android:text="User Registration"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <EditText
-            android:layout_margin="15dp"
+            android:id="@+id/editTextFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Last Name"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Birth Date" />
+
+        <LinearLayout
+            android:layout_width="398dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerMonth"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fadeScrollbars="false"
+                android:saveEnabled="true" />
+
+            <Spinner
+                android:id="@+id/spinnerDay"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinnerYear"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your email"
+            android:layout_margin="15dp"
+            android:hint="Email Adress"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:layout_margin="15dp"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your password"
-            android:inputType="textPassword"/>
+            android:layout_margin="15dp"
+            android:hint="New Password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/buttonRegister"
-            android:text="Register User"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Register User" />
 
         <TextView
-            android:textAlignment="center"
-            android:text="Already registered? Sign in here"
             android:id="@+id/textViewSignIn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Already registered? Sign in here"
+            android:textAlignment="center" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
