@@ -14,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
+        android:layout_margin="15dp"
         tools:layout_editor_absoluteY="4dp">
 
 
@@ -29,7 +30,6 @@
             android:id="@+id/editTextFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="First Name"
             android:inputType="textPersonName" />
 
@@ -37,7 +37,6 @@
             android:id="@+id/editTextLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="Last Name"
             android:inputType="textPersonName" />
 
@@ -76,15 +75,15 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:hint="Email Adress"
+
+            android:hint="Email Address"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+
             android:hint="New Password"
             android:inputType="textPassword" />
 
@@ -92,7 +91,7 @@
             android:id="@+id/editTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+
             android:hint="Confirm Password"
             android:inputType="textPassword" />
 
