@@ -9,6 +9,7 @@ import java.util.Date;
  */
 
 public class User {
+
     private String firstName;
     private String lastName;
     private Date birthDate;
@@ -17,6 +18,14 @@ public class User {
     private String password;
     private Post posts[];
 
+    /**
+     * Constructor for a User object
+     * @param firstName
+     * @param lastName
+     * @param birthDate
+     * @param emailID
+     * @param password
+     */
     public User(String firstName, String lastName, Date birthDate, String emailID, String password){
 
         this.firstName = firstName;
@@ -27,6 +36,22 @@ public class User {
 
     }
 
+    /**
+     * Temporary constructor for development use
+     * @param firstName
+     * @param lastName
+     * @param emailID
+     */
+    public User (String firstName, String lastName, String emailID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailID = emailID;
+    }
+
+    /**
+     * Adding a picture to the User
+     * @param profilePicture
+     */
     public void addPicture(Image profilePicture){
         this.profilePicture = profilePicture;
     }
