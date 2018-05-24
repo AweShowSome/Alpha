@@ -8,7 +8,7 @@ import android.media.Image;
  */
 
 public class Post {
-    private Date postDate;
+//    private Date postDate;
     private Image image;
     private Location location;
     

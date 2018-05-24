@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Spinner spinnerMonth;
     private Spinner spinnerYear;
     private Spinner spinnerDay;
-    private EditText editTextConfirmPassword;
     private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
     private TextView textViewSignIn;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
 
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 
         buttonRegister.setOnClickListener(this);
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Get the email and password
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
         // Checks fields if empty. Tells user if one was empty and stops from executing further
         if (TextUtils.isEmpty(email)) {
@@ -96,7 +98,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        if (TextUtils.isEmpty(confirmPassword)) {
+            Toast.makeText(this, "Please confirm the password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!confirmPassword.equals(password)) {
+            Toast.makeText(this, "Confirmed password do not match", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
@@ -111,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(MainActivity.this,"Could not register... Try again", Toast.LENGTH_SHORT).show();
                 }
             }
