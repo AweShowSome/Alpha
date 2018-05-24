@@ -149,11 +149,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // Adding user information to the account
                     User newUser = new User(firstName, lastName, email);
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                    databaseReference.child(firebaseUser.getUid()).setValue(newUser);
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    try {
+                        Toast.makeText(MainActivity.this,"Before", Toast.LENGTH_SHORT).show();
+                        databaseReference.child(firebaseUser.getUid()).setValue("Hello");
+                        Toast.makeText(MainActivity.this,"After", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+
+                        Toast.makeText(MainActivity.this,"WE FAILED", Toast.LENGTH_SHORT).show();
+                    }
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(MainActivity.this,"Could not register... Try again", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this,"Could not register... Try again", Toast.LENGTH_SHORT).show();
                 }
             }
         });
