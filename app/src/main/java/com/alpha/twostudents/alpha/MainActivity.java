@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -149,13 +150,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // Adding user information to the account
                     User newUser = new User(firstName, lastName, email);
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    if (firebaseUser.getEmail() == null){
+//                        Log.e("HI", "it was null");
+                        Toast.makeText(MainActivity.this,"NULLLLLL", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this,"NOT NULL", Toast.LENGTH_SHORT).show();
+                    }
+                    Toast.makeText(MainActivity.this, firebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+
+
                     try {
                         Toast.makeText(MainActivity.this,"Before", Toast.LENGTH_SHORT).show();
-                        databaseReference.child(firebaseUser.getUid()).setValue("Hello");
+                        databaseReference.child(firebaseUser.getUid()).setValue(newUser);
                         Toast.makeText(MainActivity.this,"After", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-
-                        Toast.makeText(MainActivity.this,"WE FAILED", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, e.getClass().toString(), Toast.LENGTH_SHORT).show();
                     }
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 } else {

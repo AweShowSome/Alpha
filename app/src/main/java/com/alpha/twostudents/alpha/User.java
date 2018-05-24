@@ -10,11 +10,11 @@ import java.util.Date;
 
 public class User {
 
-    private String firstName;
-    private String lastName;
+    public String firstName;
+    public String lastName;
     private Date birthDate;
     private Image profilePicture;
-    private String emailID;
+    public String emailID;
     private String password;
     private Post posts[];
 
