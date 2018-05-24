@@ -57,4 +57,8 @@ public class User {
     }
 
 
+    public String print(){
+        return firstName + " " + lastName + "\n" + emailID;
+    }
+
 }
