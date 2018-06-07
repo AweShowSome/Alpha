@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
 
+
+        // Still need to fix the contents of the date values. Look at database to see what I mean.
         day_spinner = (Spinner)findViewById(R.id.day_spinner);
         month_spinner = (Spinner)findViewById(R.id.month_spinner);
         year_spinner = (Spinner)findViewById(R.id.year_spinner);
