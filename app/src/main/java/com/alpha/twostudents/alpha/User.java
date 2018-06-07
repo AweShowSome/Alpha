@@ -12,10 +12,9 @@ public class User {
 
     public String firstName;
     public String lastName;
-    private Date birthDate;
+    public Date birthDate;
     private Image profilePicture;
     public String emailID;
-    private String password;
     private Post posts[];
 
     /**
@@ -32,7 +31,7 @@ public class User {
         this.birthDate = birthDate;
         this.lastName = lastName;
         this.emailID = emailID;
-        this.password = password;
+
 
     }
 
@@ -56,5 +55,9 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+
+    public String print(){
+        return firstName + " " + lastName + "\n" + emailID;
+    }
 
 }
