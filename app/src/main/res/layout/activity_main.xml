@@ -15,7 +15,8 @@
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:layout_margin="15dp"
-        tools:layout_editor_absoluteY="4dp">
+        tools:layout_editor_absoluteY="4dp"
+        tools:ignore="MissingConstraints">
 
 
         <TextView
@@ -107,6 +108,12 @@
             android:layout_height="wrap_content"
             android:text="Already registered? Sign in here"
             android:textAlignment="center" />
+
+        <DatePicker
+            android:id="@+id/datePicker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="calendar"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
