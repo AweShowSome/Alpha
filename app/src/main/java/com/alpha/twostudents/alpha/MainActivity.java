@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -35,16 +38,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextFirstName;
     private EditText editTextLastName;
-    private Spinner spinnerMonth;
-    private Spinner spinnerYear;
-    private Spinner spinnerDay;
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
     private TextView textViewSignIn;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-
+    private Spinner day_spinner;
+    private Spinner month_spinner;
+    private Spinner year_spinner;
 
 
     @Override
@@ -69,11 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
-
+        day_spinner = findViewById(R.id.day_spinner);
+        month_spinner = findViewById(R.id.month_spinner);
+        year_spinner = findViewById(R.id.year_spinner);
         progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
-
         buttonRegister.setOnClickListener(this);
         textViewSignIn.setOnClickListener(this);
     }
@@ -98,13 +101,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser() {
         // Get the email and password
         final String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString();
+        final String password = editTextPassword.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
 
         // Get other user information
         final String firstName = editTextFirstName.getText().toString();
         final String lastName = editTextLastName.getText().toString();
-        Toast.makeText(MainActivity.this,"HIHIIHIHIH", Toast.LENGTH_SHORT).show();
+        final Date birthDate = new Date();
+
+        ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(this, R.array.dates, android.R.layout.simple_spinner_dropdown_item);
+        day_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        day_spinner.setAdapter(day_adapter);
+
+        ArrayAdapter<CharSequence> month_adapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
+        month_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        month_spinner.setAdapter(month_adapter);
+
+        ArrayAdapter<CharSequence> year_adapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
+        year_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        year_spinner.setAdapter(year_adapter);
+
+        day_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                birthDate.setDate(Integer.parseInt((String)parent.getItemAtPosition(position)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        month_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                birthDate.setMonth(position+1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        year_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                birthDate.setYear(Integer.parseInt((String)parent.getItemAtPosition(position)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        Toast.makeText(MainActivity.this,birthDate.toString(), Toast.LENGTH_SHORT).show();
 
         //Checks that need to be met before account can be created
         // Checks fields if empty. Tells user if one was empty and stops from executing further
@@ -148,7 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // Start profile activity
 //                    finish();
                     // Adding user information to the account
-                    User newUser = new User(firstName, lastName, email);
+                    User newUser = new User(firstName, lastName,birthDate, email,password);
+
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     if (firebaseUser.getEmail() == null){
 //                        Log.e("HI", "it was null");
@@ -157,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this,"NOT NULL", Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(MainActivity.this, firebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-
 
                     try {
                         Toast.makeText(MainActivity.this,"Before", Toast.LENGTH_SHORT).show();
