@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         month_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                date.setMonth(position);
+                date.setMonth(position+1);
                 Toast.makeText(MainActivity.this, date.toString(), Toast.LENGTH_SHORT).show();
             }
 
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Get other user information
         final String firstName = editTextFirstName.getText().toString();
         final String lastName = editTextLastName.getText().toString();
-        final Date birthDate = new Date();
+        final Date birthDate = date;
 
 
 
