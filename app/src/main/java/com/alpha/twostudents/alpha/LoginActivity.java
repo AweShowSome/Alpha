@@ -64,7 +64,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this, MainActivity.class));
         }
     }
-
+    /*
+    lets user log in to the app and verifies identity using FireBase authorization
+     */
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString();
@@ -96,17 +98,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
-//        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()){
-//                    //User is successfully registered and signed in
-//                    Toast.makeText(MainActivity.this,"Logged In Successfully", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(MainActivity.this,"Could not login... Try again", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-
     }
 }

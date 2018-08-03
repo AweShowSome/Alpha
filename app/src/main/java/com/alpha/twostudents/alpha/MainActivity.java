@@ -1,3 +1,9 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Sign-up activity. registers a new user to the application if there is not an account
+// using the same email address
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 package com.alpha.twostudents.alpha;
 
 
@@ -80,15 +86,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         year_spinner = (Spinner)findViewById(R.id.year_spinner);
         date = new Date();
 
-        ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(this, R.array.dates, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(this,
+                R.array.dates, android.R.layout.simple_spinner_dropdown_item);
         day_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         day_spinner.setAdapter(day_adapter);
 
-        ArrayAdapter<CharSequence> month_adapter = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> month_adapter = ArrayAdapter.createFromResource(this,
+                R.array.months, android.R.layout.simple_spinner_dropdown_item);
         month_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         month_spinner.setAdapter(month_adapter);
 
-        ArrayAdapter<CharSequence> year_adapter = ArrayAdapter.createFromResource(this, R.array.years, android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> year_adapter = ArrayAdapter.createFromResource(this,
+                R.array.years, android.R.layout.simple_spinner_dropdown_item);
         year_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         year_spinner.setAdapter(year_adapter);
 
@@ -120,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 date.setYear(Integer.parseInt((String)parent.getItemAtPosition(position)));
-//                System.out.print("\n\n\n\n\n" + Integer.parseInt((String)parent.getItemAtPosition(position)) + "\n\n\n\n\n");
                 Toast.makeText(MainActivity.this, date.toString(), Toast.LENGTH_SHORT).show();
             }
 
@@ -165,12 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String firstName = editTextFirstName.getText().toString();
         final String lastName = editTextLastName.getText().toString();
         final Date birthDate = date;
-
-
-
-
-
-
 
         //Checks that need to be met before account can be created
         // Checks fields if empty. Tells user if one was empty and stops from executing further
