@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -31,21 +32,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
+
             switch (item.getItemId()) {
-                case R.id.nav_home:
-                    selectedFragment = new HomeFragment();
-                    break;
                 case R.id.nav_camera:
                     selectedFragment = new CameraFragment();
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfileFragment();
                     break;
+                case R.id.nav_home:
+                    selectedFragment = new HomeFragment();
+                    break;
             }
 
             //jumping to the selected fragment
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_contrainer, selectedFragment).commit();
+                    .replace(R.id.fragment_contrainer, selectedFragment).addToBackStack(null).commit();
+
+
             return true;
         }
     };
@@ -55,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //getting saved state if any
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
 
         //Declaring navigation listeners and initialising fragment for the current state i.e home
         BottomNavigationView bottomNav =  findViewById(R.id.bottom_navigation);
@@ -70,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         //Displaying the user email id on the top

@@ -209,32 +209,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
+                // Adding user information to the account
+                User newUser = new User(firstName, lastName, birthDate, email, password);
                 if(task.isSuccessful()){
                     //User is successfully registered and signed in
                     Toast.makeText(MainActivity.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
-                    // Start profile activity
-//                    finish();
-                    // Adding user information to the account
-                    User newUser = new User(firstName, lastName, birthDate, email, password);
+                    Intent i = new Intent(MainActivity.this, ProfilePicActivity.class);
+// set the new task and clear flags
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
 
-                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                    if (firebaseUser.getEmail() == null){
-//                        Log.e("HI", "it was null");
-                        Toast.makeText(MainActivity.this,"NULLLLLL", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this,"NOT NULL", Toast.LENGTH_SHORT).show();
-                    }
-                    Toast.makeText(MainActivity.this, firebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-
-                    try {
-                        Toast.makeText(MainActivity.this,"Before", Toast.LENGTH_SHORT).show();
-                        databaseReference.child(firebaseUser.getUid()).setValue(newUser);
-                        Toast.makeText(MainActivity.this,"After", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, e.getClass().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 } else {
                     progressDialog.dismiss();
 //                    Toast.makeText(MainActivity.this,"Could not register... Try again", Toast.LENGTH_SHORT).show();
